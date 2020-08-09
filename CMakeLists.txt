@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 set(CMAKE_C_COMPILER_WORKS TRUE)
 set(CMAKE_CXX_COMPILER_WORKS TRUE)
 
+set(CMAKE_OBJCOPY arm-none-eabi-objcopy CACHE INTERNAL "objcopy" FORCE)
+set(CMAKE_OBJDUMP arm-none-eabi-objdump CACHE INTERNAL "objdump" FORCE)
+
 project(SynestiaOS LANGUAGES C ASM)
 
 if(${SynestiaOS_SOURCE_DIR} STREQUAL ${SynestiaOS_BINARY_DIR})
@@ -27,7 +30,8 @@ include(${SynestiaOS_SOURCE_DIR}/CMake/HeaderFiles.cmake)
 message(STATUS "PLATFORM is ${PLATFORM}")
 
 if (SynestiaArch STREQUAL arm)
-    set(CMAKE_C_FLAGS "-O0 -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7")
+    set(CMAKE_C_FLAGS "-O0 -mfpu=neon-fp-armv8 -mfloat-abi=hard -marm -mcpu=cortex-a72")
+    #set(CMAKE_C_FLAGS "-O0 -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7")
 elseif (SynestiaArch STREQUAL aarch64)
     set(CMAKE_C_FLAGS "-O0 -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -march=armv8-a+crc -mcpu=cortex-a53")
 else ()

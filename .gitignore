@@ -5,3 +5,5 @@ Build/
 GenDocs/html/
 GenDocs/xml/
 SourceCode/Board/MaixGo/
+*.swp
+tag

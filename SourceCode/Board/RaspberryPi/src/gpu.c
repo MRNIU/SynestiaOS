@@ -33,8 +33,8 @@ void gpu_write_pixel_color(uint32_t x, uint32_t y, uint32_t c) {
 uint32_t *gpu_flush(int arg) {
   LogInfo("[GPU]: flush.\n");
   int index = 0;
-  for (uint32_t i = 0; i < 768; i++) {
-    for (uint32_t j = 0; j < 1024; j++) {
+  for (uint32_t i = 0; i < framebuffer_get_height(); i++) {
+    for (uint32_t j = 0; j < framebuffer_get_width(); j++) {
       gpu_write_pixel_color(j, i, GFX2D_BUFFER[index]);
       index++;
     }
@@ -43,6 +43,5 @@ uint32_t *gpu_flush(int arg) {
 
 void gpu_init(void) {
   framebuffer_init();
-  LogInfo("[Framebuffer]: Inited 1024x768x32\n");
   framebuffer_clear(0xFFFFFF);
 }

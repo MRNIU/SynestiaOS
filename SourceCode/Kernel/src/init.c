@@ -12,6 +12,7 @@
 #include <gui_window.h>
 #include <interrupt.h>
 #include <kheap.h>
+#include <led.h>
 #include <log.h>
 #include <mutex.h>
 #include <sched.h>
@@ -148,9 +149,19 @@ uint32_t *window_thread5(int args) {
   }
 }
 
-TimerHandler gpuHandler;
-SpinLockCreate(bootSpinLock);
+//TimerHandler gpuHandler;
+//SpinLockCreate(bootSpinLock);
 void kernel_main(void) {
+  led_init();
+  /*
+  init_bsp();
+  print_splash();
+
+  vmm_init();
+  kheap_init();
+  init_interrupt();
+  gpu_init();
+
   if (read_cpuid() == 0) {
     bootSpinLock.operations.acquire(&bootSpinLock);
     init_bsp();
@@ -161,8 +172,8 @@ void kernel_main(void) {
     init_interrupt();
     gpu_init();
 
-    Gfx2DContext context = {.width = 1024, .height = 768, .buffer = GFX2D_BUFFER};
-    gfx2d_draw_bitmap(context, 0, 0, 1024, 768, desktop());
+    Gfx2DContext context = {.width = framebuffer_get_width(), .height = framebuffer_get_height(), .buffer = GFX2D_BUFFER};
+    gfx2d_draw_bitmap(context, 0, 0, framebuffer_get_width(), framebuffer_get_height(), desktop());
     draw_task_bar();
 
     gpuHandler.node.next = nullptr;
@@ -190,6 +201,7 @@ void kernel_main(void) {
     bootSpinLock.operations.release(&bootSpinLock);
     schd_schedule();
   }
+  */
 
   // schd_switch_next();
 }

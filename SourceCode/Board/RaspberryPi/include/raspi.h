@@ -1,7 +1,9 @@
 #ifndef __BOARD_RASP_H__
 #define __BOARD_RASP_H__
 
-#if defined(RASPI3) || defined(RASPI2)
+#if defined(RASPI1)
+#define PERIPHERAL_BASE 0x20000000
+#elif defined(RASPI3) || defined(RASPI2)
 #define PERIPHERAL_BASE 0x3F000000
 #elif defined(RASPI4)
 #define PERIPHERAL_BASE 0xFE000000

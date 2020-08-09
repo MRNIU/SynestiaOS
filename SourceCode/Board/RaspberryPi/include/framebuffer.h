@@ -13,4 +13,8 @@ void framebuffer_draw_pixel(uint32_t x, uint32_t y, char r, char g, char b);
 
 void framebuffer_clear(uint32_t color);
 
+uint32_t framebuffer_get_width(void);
+
+uint32_t framebuffer_get_height(void);
+
 #endif //__BOARD_RASP_FRAMEBUFFER_H__

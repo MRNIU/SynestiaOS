@@ -21,6 +21,7 @@ uint32_t framebuffer_get_width(void){return framebufferWidth;}
 uint32_t framebuffer_get_height(void){return framebufferHeight;}
 
 int framebuffer_init(void) {
+  /*
   framebufferWidth = 1024;
   framebufferHeight = 768;
   PropertySetPhysicalDisplayWHMail *setPhysicalDisplayWHMail =
@@ -40,8 +41,8 @@ int framebuffer_init(void) {
       setPhysicalDisplayWHMail->property.code == CODE_RESPONSE_FAILURE) {
     LogError("[Framebuffer]: Unable to set physical WH\n");
   }
+  */
 
-  /*
   PropertyGetPhysicalDisplayWHMail *getPhysicalDisplayWHMail =
       kheap_alloc_aligned(sizeof(PropertyGetPhysicalDisplayWHMail), 16);
   getPhysicalDisplayWHMail->size = sizeof(PropertyGetPhysicalDisplayWHMail);
@@ -61,7 +62,6 @@ int framebuffer_init(void) {
   }
   framebufferWidth = getPhysicalDisplayWHMail->property.width;
   framebufferHeight = getPhysicalDisplayWHMail->property.height;
-  */
 
   PropertySetVirtualBufferWHMail *setVirtualBufferWHMail =
       kheap_alloc_aligned(sizeof(PropertySetVirtualBufferWHMail), 16);

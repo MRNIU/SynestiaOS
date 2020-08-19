@@ -50,6 +50,9 @@ SECTIONS
     . = 0x20000 + __fiq_stack;
     __sys_stack = .;
 
+    . = 0x20000 + __sys_stack;
+    __abort_stack = .;
+
     __end_stack = .;
     . = ALIGN(4096);
 

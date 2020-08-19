@@ -58,7 +58,7 @@
 /*...................................................................*/
 int led_init(void)
 {
-  unsigned int i, select;
+  unsigned int i, j, select;
 
 #if defined(RASPI4)
   /* GPIO 42 is 2nd register in GPFSEL4, so 2 * 3 bits or bit 6. */
@@ -165,7 +165,8 @@ int led_init(void)
   REG32(GPFSEL2) = select;
 
   /* Loop turning the activity LED on and off. */
-  for (;;)
+  //for (;;)
+  for (j=0;j<5;++j)
   {
     /* Turn on the activity LED. */
 #if defined(RASPI4)
@@ -180,7 +181,7 @@ int led_init(void)
 #endif
 
     // Loop to wait a bit
-    for (i = 0; i < TOGGLE_LOOP_CNT; ++i) /* loop to pause LED on */
+    for (i = 0; i < TOGGLE_LOOP_CNT/10; ++i) /* loop to pause LED on */
       select = REG32(GPFSEL4);
 
     /* Turn off the activity LED. */
@@ -196,7 +197,7 @@ int led_init(void)
 #endif
 
     // Loop to wait a bit
-    for (i = 0; i < TOGGLE_LOOP_CNT; ++i) /* loop to pause LED off */
+    for (i = 0; i < TOGGLE_LOOP_CNT/10; ++i) /* loop to pause LED off */
       select = REG32(GPFSEL4);
   }
   return select;

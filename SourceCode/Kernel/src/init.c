@@ -149,21 +149,16 @@ uint32_t *window_thread5(int args) {
   }
 }
 
-//TimerHandler gpuHandler;
-//SpinLockCreate(bootSpinLock);
+TimerHandler gpuHandler;
+SpinLockCreate(bootSpinLock);
 void kernel_main(void) {
-  led_init();
-  /*
-  init_bsp();
-  print_splash();
-
-  vmm_init();
-  kheap_init();
-  init_interrupt();
-  gpu_init();
+  //if (read_cpuid() == 0) {
+  //  led_init();
+  //}
 
   if (read_cpuid() == 0) {
-    bootSpinLock.operations.acquire(&bootSpinLock);
+    //bootSpinLock.operations.acquire(&bootSpinLock);
+    led_init();
     init_bsp();
     print_splash();
 
@@ -198,10 +193,9 @@ void kernel_main(void) {
     Thread *window5Thread = thread_create("window5", &window_thread5, 1, 1);
     schd_add_thread(window5Thread, 4);
 
-    bootSpinLock.operations.release(&bootSpinLock);
+    //bootSpinLock.operations.release(&bootSpinLock);
     schd_schedule();
   }
-  */
 
   // schd_switch_next();
 }

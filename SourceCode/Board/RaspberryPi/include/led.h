@@ -39,6 +39,13 @@
 /*...................................................................*/
 /* Macro Definitions                                                 */
 /*...................................................................*/
+
+/*
+** Time definitions
+*/
+#define MICROS_PER_SECOND      1000000 /* Microseconds per second */
+#define MICROS_PER_MILLISECOND 1000  /* Microseconds per millisecond */
+
 /*
  * Register manipulation macros
 */
